@@ -2,4 +2,28 @@
 <resources>
     <string name="hello">Hello World, CMStatsWidget!</string>
     <string name="app_name">CMStatsWidget</string>
+    <string-array name="intervalDisplay">
+        <item>Never</item>
+        <item>1 Second</item>
+        <item>5 Seconds</item>
+        <item>10 Seconds</item>
+        <item>30 Seconds</item>
+        <item>1 Minute</item>
+        <item>5 Minutes</item>
+        <item>10 Minutes</item>
+        <item>30 Minutes</item>
+        <item>1 Hour</item>
+    </string-array>
+    <string-array name="intervalValues">
+        <item>0</item>
+        <item>1000</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>30000</item>
+        <item>60000</item>
+        <item>300000</item>
+        <item>600000</item>
+        <item>1800000</item>
+        <item>3600000</item>
+    </string-array>
 </resources>

@@ -4,6 +4,7 @@
     android:minWidth="294dp"
     android:minHeight="40dp"
     android:updatePeriodMillis="15000"
-    android:initialLayout="@layout/widget">
+    android:initialLayout="@layout/widget"
+    android:configure="net.teamdouche.stats.CMStatsWidget.settings.CMStatsWidget">
 
 </appwidget-provider>

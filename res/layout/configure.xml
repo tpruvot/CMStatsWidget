@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/wrapper">
+
+    <com.google.ads.GoogleAdView
+        android:id="@+id/adview"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"/>
+<!-- 
+    <CheckBox
+        android:id="@+id/background"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/adview"
+        android:checked="false"
+        android:text="Enable semi-transparent background"/>
+ -->
+    <CheckBox
+        android:id="@+id/touch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/adview"
+        android:checked="false"
+        android:text="Enable touch updating"/>
+
+    <CheckBox
+        android:id="@+id/interval"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/touch"
+        android:checked="false"
+        android:text="Enable updating by time interval"/>
+
+    <Spinner
+        android:id="@+id/intervalValue"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:entries="@array/intervalValues"
+        android:layout_below="@id/interval"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#aaaaaa"
+        android:padding="5dip"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Save "/>
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"/>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
