@@ -16,13 +16,11 @@ import org.json.JSONObject;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -48,9 +46,15 @@ public class CMStatsWidgetProvider extends AppWidgetProvider {
         doWork();
     }
 
+    @Override
+    public void onDeleted(Context context, int[] appWidgetIds) {
+            cancelTimer();
+    }
+
     public static void cancelTimer(){
         if (timer != null){
             timer.cancel();
+            timer = null;
         }
     }
 
@@ -58,6 +62,9 @@ public class CMStatsWidgetProvider extends AppWidgetProvider {
         if (timer == null){
             timer = new Timer();
             timer.scheduleAtFixedRate(new Task(), 1, interval);
+        } else {
+            cancelTimer();
+            setTimer(interval);
         }
     }
 
@@ -107,7 +114,6 @@ public class CMStatsWidgetProvider extends AppWidgetProvider {
                    mContext.getPackageName(), R.layout.widget);
             String count = json.getString("count");
             views.setTextViewText(R.id.counter, count);
-            Log.i("FUUU    ", "\n\n\n\n\nFUUU: " + count + "\n\n\n\n");
             boolean useTouch = prefs.getBoolean("useTouch", false);
             //boolean useBackground = prefs.getBoolean(
             //                           "useBackground", false);
@@ -118,8 +124,7 @@ public class CMStatsWidgetProvider extends AppWidgetProvider {
                 i.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
                 PendingIntent pi = PendingIntent.getBroadcast(mContext, 0, i,
                                             PendingIntent.FLAG_UPDATE_CURRENT);
-                views.setOnClickPendingIntent(R.id.counter, pi);
-                views.setOnClickPendingIntent(R.id.title, pi);
+                views.setOnClickPendingIntent(R.id.bubble, pi);
             }
             mAppWidgetManager.updateAppWidget(mAppWidgetId, views);
         } catch (Exception e){

@@ -1,5 +1,7 @@
 package net.teamdouche.stats.CMStatsWidget.settings;
 
+import java.util.HashMap;
+
 import net.teamdouche.stats.CMStatsWidget.R;
 import net.teamdouche.stats.CMStatsWidget.widget.CMStatsWidgetProvider;
 import android.app.Activity;
@@ -8,41 +10,47 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Spinner;
-
-import com.google.ads.AdSenseSpec;
-import com.google.ads.AdSenseSpec.AdType;
-import com.google.ads.GoogleAdView;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class CMStatsWidget extends Activity {
 
-    private static final boolean TEST = true;
-
-    private static final String CLIENT_ID = "pub-8784552668996850";
-    private static final String COMPANY_NAME = "Teamdouche";
-    private static final String APP_NAME = "CMStatsWidget";
-    private static final String KEYWORDS = "android";
-    private static final String CHANNEL_ID = "9870669534";
 
     private static final String PREFS_NAME = "widget_prefs";
     private static Context mContext = null;
 
     private int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
-    private GoogleAdView adView = null;
-    private AdSenseSpec adSenseSpec = null;
+    private WebView adView = null;
 
     //private CheckBox background = null;
-    private CheckBox touch = null;
+    //private CheckBox touch = null;
     private CheckBox intervalBox = null;
     private Spinner intervalValue = null;
     private Button saveBtn = null;
     private Button cnclBtn = null;
+
+    @SuppressWarnings("serial")
+    private HashMap<String,Integer> intervalMap=new HashMap<String,Integer>(){
+        {
+            put("Never", 0);
+            put("1 Second", 1000);
+            put("5 Seconds", 5000);
+            put("10 Seconds", 10000);
+            put("30 Seconds", 30000);
+            put("1 Minute", 60000);
+            put("5 Minutes", 300000);
+            put("10 Minutes", 600000);
+            put("30 Minutes", 1800000);
+            put("60 Minutes", 3600000);
+        }
+    };
 
     private boolean useBackground = false;
     private boolean useTouch = false;
@@ -71,26 +79,22 @@ public class CMStatsWidget extends Activity {
         if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
             finish();
         }
-        adView = (GoogleAdView) findViewById(R.id.adview);
-        adSenseSpec =
-            new AdSenseSpec(CLIENT_ID)
-            .setCompanyName(COMPANY_NAME)
-            .setAppName(APP_NAME)
-            .setChannel(CHANNEL_ID)
-            .setKeywords(KEYWORDS)
-            .setAdType(AdType.TEXT_IMAGE)
-            .setAdTestEnabled(TEST);
-        adView.showAds(adSenseSpec);
+        adView = (WebView) findViewById(R.id.adview);
+        String url = "http://www.optedoblivion.com/stat_ad.html";
+        adView.getSettings().setJavaScriptEnabled(true);
+        adView.loadUrl(url);
+        Log.i("FUU   ", "Loading: " + url);
         cnclBtn = (Button) findViewById(R.id.cancel);
         saveBtn = (Button) findViewById(R.id.save);
         //background = (CheckBox) findViewById(R.id.background);
         //useBackground = background.isChecked();
-        touch = (CheckBox) findViewById(R.id.touch);
-        useTouch = touch.isChecked();
+        //touch = (CheckBox) findViewById(R.id.touch);
+        //useTouch = touch.isChecked();
         intervalBox = (CheckBox) findViewById(R.id.interval);
         useInterval = intervalBox.isChecked();
         intervalValue = (Spinner) findViewById(R.id.intervalValue);
-        interval = Long.parseLong(intervalValue.getSelectedItem().toString());
+        String i = intervalValue.getSelectedItem().toString();
+        interval = intervalMap.get(i);
         intervalBox.setOnCheckedChangeListener(new OnCheckedChangeListener(){
 
             @Override
@@ -115,10 +119,10 @@ public class CMStatsWidget extends Activity {
             @Override
             public void onClick(View arg0) {
                 //useBackground = background.isChecked();
-                useTouch = touch.isChecked();
+                //useTouch = touch.isChecked();
                 useInterval = intervalBox.isChecked();
-                interval = Long.parseLong(
-                                   intervalValue.getSelectedItem().toString());
+                String i = intervalValue.getSelectedItem().toString();
+                interval = intervalMap.get(i);
                 CMStatsWidgetProvider.prefs =
                                   mContext.getSharedPreferences(PREFS_NAME, 0);
                 SharedPreferences.Editor editor = 
@@ -128,7 +132,7 @@ public class CMStatsWidget extends Activity {
                 editor.putBoolean("useInterval", useInterval);
                 editor.putLong("interval", interval);
                 editor.commit();
-                if (useInterval){
+                if (useInterval && interval > 0){
                     CMStatsWidgetProvider.setTimer(interval);
                 }
                 Intent resultValue = new Intent();
