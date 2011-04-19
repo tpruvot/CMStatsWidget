@@ -31,10 +31,18 @@
         android:text="Enable touch updating"/>
  -->
     <CheckBox
-        android:id="@+id/interval"
+        android:id="@+id/layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/adview"
+        android:checked="true"
+        android:text="Use old layout (no duck)"/>
+
+    <CheckBox
+        android:id="@+id/interval"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout"
         android:checked="true"
         android:text="Enable updating by time interval"/>
 

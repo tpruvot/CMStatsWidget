@@ -110,8 +110,14 @@ public class CMStatsWidgetProvider extends AppWidgetProvider {
             InputStream is = connection.getInputStream();
             String jsonStr = inputStreamToString(is);
             JSONObject json = new JSONObject(jsonStr);
-            RemoteViews views = new RemoteViews(
-                   mContext.getPackageName(), R.layout.widget);
+            RemoteViews views = null;
+            if (prefs.getBoolean("useOldLayout", false)){
+                views = new RemoteViews(
+                               mContext.getPackageName(), R.layout.widget_old);
+            } else {
+                views = new RemoteViews(
+                                   mContext.getPackageName(), R.layout.widget);
+            }
             String count = json.getString("count");
             views.setTextViewText(R.id.counter, count);
             boolean useTouch = prefs.getBoolean("useTouch", false);

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="0dip"
+    android:background="#95000000"
+    android:padding="1dip">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/bubble"
+        android:background="@android:color/transparent"
+        android:textColor="#FFFFFF"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="50dip"
+        android:textStyle="bold"
+        android:textSize="18dip"
+        android:shadowColor="#000000"
+        android:text="CyanogenMod Installs"/>
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/bubble"
+        android:background="@android:color/transparent"
+        android:textColor="#FFFFFF"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dip"
+        android:textStyle="bold"
+        android:textSize="26dip"
+        android:layout_below="@id/title"
+        android:shadowColor="#000000"
+        android:text="Loading..."/>
+</RelativeLayout>

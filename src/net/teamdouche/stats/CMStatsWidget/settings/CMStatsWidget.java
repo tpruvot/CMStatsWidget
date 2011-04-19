@@ -32,6 +32,7 @@ public class CMStatsWidget extends Activity {
     //private CheckBox background = null;
     //private CheckBox touch = null;
     private CheckBox intervalBox = null;
+    private CheckBox layout = null;
     private Spinner intervalValue = null;
     private Button saveBtn = null;
     private Button cnclBtn = null;
@@ -91,6 +92,7 @@ public class CMStatsWidget extends Activity {
         //touch = (CheckBox) findViewById(R.id.touch);
         //useTouch = touch.isChecked();
         intervalBox = (CheckBox) findViewById(R.id.interval);
+        layout = (CheckBox) findViewById(R.id.layout);
         useInterval = intervalBox.isChecked();
         intervalValue = (Spinner) findViewById(R.id.intervalValue);
         String i = intervalValue.getSelectedItem().toString();
@@ -130,6 +132,7 @@ public class CMStatsWidget extends Activity {
                 editor.putBoolean("useBackground", useBackground);
                 editor.putBoolean("useTouch", useTouch);
                 editor.putBoolean("useInterval", useInterval);
+                editor.putBoolean("useOldLayout", layout.isChecked());
                 editor.putLong("interval", interval);
                 editor.commit();
                 if (useInterval && interval > 0){
