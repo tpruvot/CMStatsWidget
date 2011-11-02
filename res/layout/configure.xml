@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/adview"
         android:checked="false"
-        android:text="Enable semi-transparent background"/>
+        android:text="@string/semi_transparent"/>
  -->
 <!-- 
     <CheckBox
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/adview"
         android:checked="false"
-        android:text="Enable touch updating"/>
+        android:text="@string/touch_updating"/>
  -->
     <CheckBox
         android:id="@+id/layout"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/adview"
         android:checked="true"
-        android:text="Use old layout (no duck)"/>
+        android:text="@string/old_layout"/>
 
     <CheckBox
         android:id="@+id/interval"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/layout"
         android:checked="true"
-        android:text="Enable updating by time interval"/>
+        android:text="@string/enable_update_interval"/>
 
     <Spinner
         android:id="@+id/intervalValue"
@@ -70,12 +70,12 @@
                 android:id="@+id/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Save "/>
+                android:text="@string/save"/>
             <Button
                 android:id="@+id/cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancel"/>
+                android:text="@string/cancel"/>
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

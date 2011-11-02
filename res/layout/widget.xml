@@ -26,5 +26,5 @@
         android:textStyle="bold"
         android:textSize="26dip"
         android:shadowColor="#000000"
-        android:text="Loading..."/>
+        android:text="@string/loading"/>
 </RelativeLayout>

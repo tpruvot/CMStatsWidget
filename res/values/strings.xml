@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, CMStatsWidget!</string>
-    <string name="app_name">CMStatsWidget</string>
+    <string name="app_name" translatable="false">CMStats Widget</string>
+
+    <string name="old_layout">Use old layout (no duck)</string>
+    <string name="enable_update_interval">Enable updating by time interval</string>
+    <string name="save">" Save "</string>
+    <string name="cancel">Cancel</string>
+    <string name="touch_updating">Enable touch updating</string>
+    <string name="semi_transparent">Enable semi-transparent background</string>
+
+    <string name="loading">Loading...</string>
+    <string name="cyanogen_installs">CyanogenMod Installs</string>
+
     <string-array name="intervalDisplay">
         <item>1 Second</item>
         <item>5 Seconds</item>
